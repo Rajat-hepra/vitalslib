@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">vitals</string>
+    <string name="discover_device">DISCOVER DEVICE</string>
+    <string name="temperature"><b>Temperature</b>\n0 C - 0 F</string>
+    <string name="available_devices">Select Device</string>
+</resources>

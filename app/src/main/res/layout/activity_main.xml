@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/txtDiscover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/discover_device"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sp"
+            android:textColor="#5A03A3"
+            android:paddingHorizontal="@dimen/_20dp"
+            android:paddingVertical="@dimen/_10dp"
+            android:elevation="@dimen/_8dp"
+            android:background="@drawable/rounded30_light_purple"
+            android:layout_marginTop="@dimen/_30dp"/>
+
+        <TextView
+            android:id="@+id/txtReading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/temperature"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/_30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDiscover"
+            android:textSize="@dimen/_20sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:elevation="@dimen/_8dp"
+            android:padding="@dimen/_10dp"
+            android:background="@drawable/rounded20_purple"
+            android:layout_marginTop="@dimen/_30dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
