@@ -27,14 +27,14 @@ object Vitals {
         val inputStream: InputStream
         try {
             outputStream = socket!!.outputStream
-            inputStream = socket!!.inputStream
+            inputStream = socket.inputStream
             val buffer = ByteArray(1024)
 
             outputStream.write(type?.toByteArray())
             val bytesRead: Int = inputStream.read(buffer)
             val reading = String(buffer, 0, bytesRead)
             result = reading.trim()
-
+            Log.e("Vitals", result)
         } catch (e: IOException) {
             Log.e("Vitals", "Error in data transmission", e)
         }
@@ -50,7 +50,7 @@ object Vitals {
             val bytesRead: Int = inputStream.read(buffer)
             val reading = String(buffer, 0, bytesRead)
             result = reading.trim()
-
+            Log.e("Vitals", result)
         } catch (e: IOException) {
             Log.e("Vitals", "Error in data transmission", e)
         }
