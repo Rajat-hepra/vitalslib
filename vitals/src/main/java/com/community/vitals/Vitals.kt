@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
+import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
 import android.widget.Toast
@@ -16,36 +17,45 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 object Vitals {
 
-        fun sendReceiveData(type: String?, socket: BluetoothSocket?): String {
-            var result = ""
-            val outputStream: OutputStream
-            val inputStream: InputStream
-            try {
-                outputStream = socket!!.outputStream
-                inputStream = socket!!.inputStream
-                val buffer = ByteArray(1024)
-                when (type) {
-                    null, "" -> {
-                        // If type is null or empty, just read data from the input stream
-                        val bytesRead: Int = inputStream.read(buffer)
-                        val reading = String(buffer, 0, bytesRead)
-                        result = reading.trim()
-                    }
-                    else -> {
-                        outputStream.write(type.toByteArray())
-                        val bytesRead: Int = inputStream.read(buffer)
-                        val reading = String(buffer, 0, bytesRead)
-                        result = reading.trim()
-                    }
-                }
-            } catch (e: IOException) {
-                Log.e("Vitals", "Error in data transmission", e)
-            }
-            return result
+    fun sendData(type: String?, socket: BluetoothSocket?): String {
+        var result = ""
+        val outputStream: OutputStream
+        val inputStream: InputStream
+        try {
+            outputStream = socket!!.outputStream
+            inputStream = socket!!.inputStream
+            val buffer = ByteArray(1024)
+
+            outputStream.write(type?.toByteArray())
+            val bytesRead: Int = inputStream.read(buffer)
+            val reading = String(buffer, 0, bytesRead)
+            result = reading.trim()
+
+        } catch (e: IOException) {
+            Log.e("Vitals", "Error in data transmission", e)
         }
+        return result
+    }
+
+    fun receiveData(socket: BluetoothSocket?): String {
+        var result = ""
+        val inputStream: InputStream
+        try {
+            inputStream = socket!!.inputStream
+            val buffer = ByteArray(1024)
+            val bytesRead: Int = inputStream.read(buffer)
+            val reading = String(buffer, 0, bytesRead)
+            result = reading.trim()
+
+        } catch (e: IOException) {
+            Log.e("Vitals", "Error in data transmission", e)
+        }
+        return result
+    }
 
 //    fun sendReceiveData(type: String?, socket: BluetoothSocket?): String {
 //        Log.e("VitalSocket", "$socket")
