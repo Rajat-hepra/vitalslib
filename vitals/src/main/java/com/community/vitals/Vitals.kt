@@ -27,7 +27,7 @@ import kotlin.coroutines.coroutineContext
 
 object Vitals {
 
-    fun sendData(type: String?, socket: BluetoothSocket?, connectedDevice: BluetoothDevice): String {
+    fun sendData(type: String?, socket: BluetoothSocket?, connectedDevice: String): String {
         var result = ""
         val outputStream: OutputStream
         val inputStream: InputStream
