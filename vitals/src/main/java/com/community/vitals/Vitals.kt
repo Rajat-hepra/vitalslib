@@ -27,7 +27,7 @@ import kotlin.coroutines.coroutineContext
 
 object Vitals {
 
-    fun sendData(type: String?, socket: BluetoothSocket?, connectedDevice: BluetoothDevice): Thread? {
+    fun sendData(type: String?, socket: BluetoothSocket?, connectedDevice: BluetoothDevice): String {
         var result = ""
         val outputStream: OutputStream
         val inputStream: InputStream
@@ -42,16 +42,14 @@ object Vitals {
             val bytesRead: Int = inputStream.read(buffer)
             val reading = String(buffer, 0, bytesRead)
             handler.post( Runnable() {
-                fun run() {
                     result = reading.trim()
                     Log.e("Vitals", result)
-                }
             })
 
         } catch (e: IOException) {
             Log.e("Vitals", "Error in data transmission", e)
         }
-        return null
+        return result
     }
 
     fun receiveData(socket: BluetoothSocket?): String {
