@@ -1,11 +1,17 @@
 package com.community.vitals
 
 import android.annotation.SuppressLint
+import android.app.Service
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Binder
+import android.os.Bundle
+import android.os.Handler
+import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import kotlinx.coroutines.launch
@@ -21,7 +27,7 @@ import kotlin.coroutines.coroutineContext
 
 object Vitals {
 
-    fun sendData(type: String?, socket: BluetoothSocket?): String {
+    fun sendData(type: String?, socket: BluetoothSocket?, connectedDevice: BluetoothDevice): String {
         var result = ""
         val outputStream: OutputStream
         val inputStream: InputStream
@@ -56,6 +62,8 @@ object Vitals {
         }
         return result
     }
+
+
 
 //    fun sendReceiveData(type: String?, socket: BluetoothSocket?): String {
 //        Log.e("VitalSocket", "$socket")

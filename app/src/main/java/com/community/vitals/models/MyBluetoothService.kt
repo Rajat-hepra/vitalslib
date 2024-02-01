@@ -19,9 +19,7 @@ class MyBluetoothService : Service() {
     private var connectedThread: ConnectedThread? = null
     private val handler = Handler(Looper.getMainLooper())
     private val MESSAGE_READ: Int = 0
-    private val MESSAGE_WRITE: Int = 1
     private val MESSAGE_TOAST: Int = 2
-    private val MESSAGE_RECEIVED: Int = 3
     private val binder = LocalBinder()
     private var receivedData: String? = null
 
